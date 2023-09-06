@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: sales.learnitguide.net
+    http:
+      paths:
+      - path: /        
+      - backend:
+          serviceName: Sales-svc
+          servicePort: 80
+  - host: purchase.learnitguide.net
+    http:
+      paths:
+      - path: /
+      - backend:
+        serviceName: Purchase-svc
+        servicePort: 80
+  - host: examples.site1.com
+    http:
+        paths:
+        - path: /
+        - backend:
+        serviceName: Examples-svc
+        servicePort: 80

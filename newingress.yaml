@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+      - knote.learnitguide.com
+    seceretName: my-secret      
+
+  rules:
+  - host: knote.learnitguide.com
+    http:
+      paths:
+      - path: /
+      - backend:
+          serviceName: knote
+          servicePort: 80
+
